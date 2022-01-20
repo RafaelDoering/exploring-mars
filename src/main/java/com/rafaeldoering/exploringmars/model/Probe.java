@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.rafaeldoering.exploringmars.exception.InvalidLocationException;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,7 +41,11 @@ public class Probe extends BaseEntity {
     this.name = name;
   }
 
-  public void deploy(Mesh mesh, Coordinate coordinate, CardinalDirection direction) {
+  public void deploy(
+    Mesh mesh,
+    Coordinate coordinate,
+    CardinalDirection direction
+  ) throws Exception {
     if (mesh.isCoordinateEmpty(coordinate)) {
       if (this.mesh != null) {
         this.mesh.removeEntity(this);
@@ -50,7 +55,9 @@ public class Probe extends BaseEntity {
       this.positionX = coordinate.getX();
       this.positionY = coordinate.getY();
       this.direction = direction;
-    } 
+    } else {
+      throw new InvalidLocationException();
+    }
   }
 
   public void turnLeft() {
