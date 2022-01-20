@@ -77,4 +77,32 @@ public class ProbeService {
 
     return probe;
   }
+
+  public Probe turnProbeLeft(int probeId) throws Exception {
+    Optional<Probe> searchProbe = probeRepository.findById(probeId);
+
+    if (searchProbe.isEmpty()) {
+      throw new ProbeNotFoundException();
+    }
+
+    Probe probe = searchProbe.get();
+    probe.turnLeft();
+    probeRepository.save(probe);
+
+    return probe;
+  }
+
+  public Probe turnProbeRight(int probeId) throws Exception {
+    Optional<Probe> searchProbe = probeRepository.findById(probeId);
+
+    if (searchProbe.isEmpty()) {
+      throw new ProbeNotFoundException();
+    }
+
+    Probe probe = searchProbe.get();
+    probe.turnRight();
+    probeRepository.save(probe);
+
+    return probe;
+  }
 }

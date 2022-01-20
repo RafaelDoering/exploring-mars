@@ -54,4 +54,14 @@ public class ProbeController {
       probreDeploy.getPosition()
     );
   }
+
+  @PostMapping("/{id}/turn-left")
+  public Probe turnProbeLeft(@PathVariable("id") int id) throws Exception  {
+    return probeService.turnProbeLeft(id);
+  }
+
+  @PostMapping("/{id}/turn-right")
+  public Probe turnProbeRight(@PathVariable("id") int id) throws Exception  {
+    return probeService.turnProbeRight(id);
+  }
 }
