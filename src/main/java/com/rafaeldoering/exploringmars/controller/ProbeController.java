@@ -2,6 +2,7 @@ package com.rafaeldoering.exploringmars.controller;
 
 import javax.validation.Valid;
 
+import com.rafaeldoering.exploringmars.dto.ProbeDeployDto;
 import com.rafaeldoering.exploringmars.dto.ProbeDto;
 import com.rafaeldoering.exploringmars.model.Probe;
 import com.rafaeldoering.exploringmars.service.ProbeService;
@@ -41,5 +42,16 @@ public class ProbeController {
   @DeleteMapping("/{id}")
   public Probe deleteProbe(@PathVariable("id") int id) throws Exception {
     return probeService.deleteProbe(id);
+  }
+
+  @PostMapping("/{id}/deploy")
+  public Probe deployProbe(@PathVariable("id") int id, @Valid @RequestBody ProbeDeployDto probreDeploy) throws Exception  {
+    return probeService.deployProbe(
+      id,
+      probreDeploy.getMeshId(),
+      probreDeploy.getPositionX(),
+      probreDeploy.getPositionY(),
+      probreDeploy.getPosition()
+    );
   }
 }
