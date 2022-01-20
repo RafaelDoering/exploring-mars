@@ -93,6 +93,8 @@ public class Probe extends BaseEntity {
     if (mesh.isCoordinateEmpty(coordinate)) {
       this.positionX = coordinate.getX();
       this.positionY = coordinate.getY();
-    } 
+    } else {
+      throw new InvalidLocationException();
+    }
   }
 }
