@@ -72,4 +72,16 @@ public class ProbeTest {
     assertSame(2, probe.getPositionX());
     assertSame(1, probe.getPositionY());
   }
+
+  @Test
+  public void givenOutOfBoundsMoveWhenMoveOnMeshThenThrownError() throws Exception {    
+    try {
+      Probe probe = new Probe(PROBE_NAME);
+      Coordinate coordinate1 = new Coordinate(10, 10);
+      probe.deploy(this.mesh, coordinate1, CardinalDirection.NORTH);
+      probe.moveForward();
+    } catch (Exception error){
+      assertSame("Out of bounds", error.getMessage());
+    }
+  }
 }

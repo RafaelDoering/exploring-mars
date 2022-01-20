@@ -40,6 +40,10 @@ public class Mesh extends BaseEntity {
   }
 
   public boolean isCoordinateEmpty(Coordinate coordinate) {
+    if (isOutOfBounds(coordinate)) {
+      return false;
+    }
+    
     for (Probe probe : this.probes) {
       if (
         coordinate.getX() == probe.getPositionX() &&
@@ -50,6 +54,17 @@ public class Mesh extends BaseEntity {
     }
 
     return true;
+  }
+
+  public boolean isOutOfBounds(Coordinate coordinate) {
+    if (
+      coordinate.getX() > this.getEdgeX() ||
+      coordinate.getY() > this.getEdgeY()
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   public void addEntity(Probe probe) {
