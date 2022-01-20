@@ -21,7 +21,7 @@ public class ProbeDeployDto {
   @Min(value = 0, message = "'positionY' must be greater than 0")
   private int positionY;
 
-  @NotNull(message = "'position' is required")
-  @Pattern(regexp = "[NESW]", message = "'position' must be 'N', 'E', 'S' or 'W'")
-  private String position;
+  @NotNull(message = "'direction' is required")
+  @Pattern(regexp = "[NESW]", message = "'direction' must be 'N', 'E', 'S' or 'W'")
+  private String direction;
 }

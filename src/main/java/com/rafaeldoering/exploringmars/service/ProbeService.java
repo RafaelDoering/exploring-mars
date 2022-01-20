@@ -56,13 +56,13 @@ public class ProbeService {
     int meshId,
     int positionX,
     int positionY,
-    String position
+    CardinalDirection direction
   ) throws Exception {
     Probe probe = this.getProbe(probeId);
     Mesh mesh = meshService.getMesh(meshId);
     Coordinate coordinate = new Coordinate(positionX, positionY);
 
-    probe.deploy(mesh, coordinate, CardinalDirection.NORTH);
+    probe.deploy(mesh, coordinate, direction);
     probeRepository.save(probe);
 
     return probe;

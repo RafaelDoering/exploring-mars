@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.rafaeldoering.exploringmars.dto.ProbeDeployDto;
 import com.rafaeldoering.exploringmars.dto.ProbeDto;
+import com.rafaeldoering.exploringmars.model.CardinalDirection;
 import com.rafaeldoering.exploringmars.model.Probe;
 import com.rafaeldoering.exploringmars.service.ProbeService;
 
@@ -45,13 +46,15 @@ public class ProbeController {
   }
 
   @PostMapping("/{id}/deploy")
-  public Probe deployProbe(@PathVariable("id") int id, @Valid @RequestBody ProbeDeployDto probreDeploy) throws Exception  {
+  public Probe deployProbe(@PathVariable("id") int id, @Valid @RequestBody ProbeDeployDto probeDeploy) throws Exception  {
     return probeService.deployProbe(
       id,
-      probreDeploy.getMeshId(),
-      probreDeploy.getPositionX(),
-      probreDeploy.getPositionY(),
-      probreDeploy.getPosition()
+      probeDeploy.getMeshId(),
+      probeDeploy.getPositionX(),
+      probeDeploy.getPositionY(),
+      convertSingleLetterDirectionToCadinalDirection(
+        probeDeploy.getDirection()
+      )
     );
   }
 
@@ -68,5 +71,17 @@ public class ProbeController {
   @PostMapping("/{id}/move-forward")
   public Probe moveProbeForward(@PathVariable("id") int id) throws Exception  {
     return probeService.moveProbeForward(id);
+  }
+
+  private CardinalDirection convertSingleLetterDirectionToCadinalDirection(String direction) {
+    if (direction == "N") {
+      return CardinalDirection.NORTH;
+    } else if (direction == "E") {
+      return CardinalDirection.EAST;
+    } else if (direction == "S") {
+      return CardinalDirection.SOUTH;
+    } else {
+      return CardinalDirection.WEST;
+    } 
   }
 }
