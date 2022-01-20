@@ -6,8 +6,12 @@ import com.rafaeldoering.exploringmars.domain.model.Mesh;
 
 public class CommonMeshFactory implements MeshFactory {
   @Override
-  public Mesh create(String name, int edgeX, int edgeY) throws Exception {
-    Coordinate edge = new Coordinate(edgeX, edgeY);
-    return new CommonMesh(name, edge);
+  public Mesh create(String name, int edgeX, int edgeY) {
+    try {
+      Coordinate edge = new Coordinate(edgeX, edgeY);
+      return new CommonMesh(name, edge);
+    } catch (Exception error) {
+      return null;
+    }
   }
 }
