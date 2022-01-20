@@ -1,7 +1,6 @@
-package com.rafaeldoering.exploringmars.domain.model;
+package com.rafaeldoering.exploringmars.model;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
-
 import org.junit.jupiter.api.Test;
 
 public class MeshTest {
@@ -9,18 +8,16 @@ public class MeshTest {
 
   @Test
   public void givenValidDataWhenInstatiateMeshThenReturnMesh() throws Exception {
-    Coordinate edgeCoordinate = new Coordinate(10, 10);
-    Mesh mesh = new CommonMesh(MESH_NAME, edgeCoordinate);
+    Mesh mesh = new Mesh(MESH_NAME, 10, 10);
 
-    assertSame(10, mesh.getEdgeCoordinate().getX());
-    assertSame(10, mesh.getEdgeCoordinate().getY());
+    assertSame(10, mesh.getEdgeX());
+    assertSame(10, mesh.getEdgeY());
     assertSame(MESH_NAME, mesh.getName());
   }
 
   @Test
   public void givenValiCoordinateWhenIsCoordinateEmptyThenReturnTrue() throws Exception {
-    Coordinate edgeCoordinate = new Coordinate(10, 10);
-    Mesh mesh = new CommonMesh(MESH_NAME, edgeCoordinate);
+    Mesh mesh = new Mesh(MESH_NAME, 10, 10);
 
     Coordinate coordinate = new Coordinate(0, 0);
 
@@ -29,8 +26,7 @@ public class MeshTest {
 
   @Test
   public void givenOutOfBoundsCoordinateWhenIsCoordinateEmptyThenThrownError() throws Exception {
-    Coordinate edgeCoordinate = new Coordinate(10, 10);
-    Mesh mesh = new CommonMesh(MESH_NAME, edgeCoordinate);
+    Mesh mesh = new Mesh(MESH_NAME, 10, 10);
 
     Coordinate coordinate = new Coordinate(11, 11);
 

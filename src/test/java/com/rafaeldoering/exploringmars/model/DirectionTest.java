@@ -1,4 +1,4 @@
-package com.rafaeldoering.exploringmars.domain.model;
+package com.rafaeldoering.exploringmars.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
