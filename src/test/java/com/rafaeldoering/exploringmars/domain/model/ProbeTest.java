@@ -20,17 +20,16 @@ public class ProbeTest {
 
   @Test
   public void givenValidDataWhenInstantiatingProbeThenReturnProbe() throws Exception {
-    Probe probe = new CommonProbe(PROBE_NAME, CardinalDirection.NORTH);
+    Probe probe = new CommonProbe(PROBE_NAME);
 
     assertSame(PROBE_NAME, probe.getName());
-    assertSame(CardinalDirection.NORTH, probe.getDirection());
   }
 
   @Test
   public void givenValidMoveWhenMoveOnMeshThenMoveProbeInMesh() throws Exception {    
-    Probe probe = new CommonProbe(PROBE_NAME, CardinalDirection.NORTH);
+    Probe probe = new CommonProbe(PROBE_NAME);
     Coordinate coordinate1 = new Coordinate(0, 0);
-    probe.deploy(this.mesh, coordinate1);
+    probe.deploy(this.mesh, coordinate1, CardinalDirection.NORTH);
     probe.moveForward();
     probe.turnRight();
     probe.moveForward();

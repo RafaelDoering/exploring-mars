@@ -4,10 +4,9 @@ public class CommonProbe extends CommonEntity implements Probe {
   private String name;
   private CardinalDirection direction;
   
-  public CommonProbe(String name, CardinalDirection direction) {
+  public CommonProbe(String name) {
     super();
     this.name = name;
-    this.direction = direction;
   }
 
   @Override
