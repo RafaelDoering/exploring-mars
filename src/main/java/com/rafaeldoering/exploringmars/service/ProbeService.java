@@ -44,15 +44,11 @@ public class ProbeService {
   }
 
   public Probe deleteProbe(int id) throws Exception {
-    Optional<Probe> probe = probeRepository.findById(id);
+    Probe probe = this.getProbe(id);
 
-    if (probe.isEmpty()) {
-      throw new ProbeNotFoundException();
-    }
+    probeRepository.deleteById(probe.getId());
 
-    probeRepository.deleteById(id);
-
-    return probe.get();
+    return probe;
   }
 
   public Probe deployProbe(
@@ -62,13 +58,7 @@ public class ProbeService {
     int positionY,
     String position
   ) throws Exception {
-    Optional<Probe> searchProbe = probeRepository.findById(probeId);
-
-    if (searchProbe.isEmpty()) {
-      throw new ProbeNotFoundException();
-    }
-
-    Probe probe = searchProbe.get();
+    Probe probe = this.getProbe(probeId);
     Mesh mesh = meshService.getMesh(meshId);
     Coordinate coordinate = new Coordinate(positionX, positionY);
 
@@ -79,13 +69,7 @@ public class ProbeService {
   }
 
   public Probe turnProbeLeft(int probeId) throws Exception {
-    Optional<Probe> searchProbe = probeRepository.findById(probeId);
-
-    if (searchProbe.isEmpty()) {
-      throw new ProbeNotFoundException();
-    }
-
-    Probe probe = searchProbe.get();
+    Probe probe = this.getProbe(probeId);
     probe.turnLeft();
     probeRepository.save(probe);
 
@@ -93,13 +77,7 @@ public class ProbeService {
   }
 
   public Probe turnProbeRight(int probeId) throws Exception {
-    Optional<Probe> searchProbe = probeRepository.findById(probeId);
-
-    if (searchProbe.isEmpty()) {
-      throw new ProbeNotFoundException();
-    }
-
-    Probe probe = searchProbe.get();
+    Probe probe = this.getProbe(probeId);
     probe.turnRight();
     probeRepository.save(probe);
 
@@ -107,13 +85,7 @@ public class ProbeService {
   }
 
   public Probe moveProbeForward(int probeId) throws Exception {
-    Optional<Probe> searchProbe = probeRepository.findById(probeId);
-
-    if (searchProbe.isEmpty()) {
-      throw new ProbeNotFoundException();
-    }
-
-    Probe probe = searchProbe.get();
+    Probe probe = this.getProbe(probeId);
     probe.moveForward();
     probeRepository.save(probe);
 
