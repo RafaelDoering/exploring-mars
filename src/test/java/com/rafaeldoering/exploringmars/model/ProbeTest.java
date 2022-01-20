@@ -43,7 +43,7 @@ public class ProbeTest {
       Coordinate coordinate2 = new Coordinate(0, 0);
       probe2.deploy(this.mesh, coordinate2, CardinalDirection.NORTH);
     } catch (Exception error){
-      assertSame("Deploy overlap another probe", error.getMessage());
+      assertSame("Invalid location", error.getMessage());
     }
   }
 
@@ -81,7 +81,7 @@ public class ProbeTest {
       probe.deploy(this.mesh, coordinate1, CardinalDirection.NORTH);
       probe.moveForward();
     } catch (Exception error){
-      assertSame("Out of bounds", error.getMessage());
+      assertSame("Invalid location", error.getMessage());
     }
   }
 }
