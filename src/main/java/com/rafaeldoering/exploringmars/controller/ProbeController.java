@@ -64,4 +64,9 @@ public class ProbeController {
   public Probe turnProbeRight(@PathVariable("id") int id) throws Exception  {
     return probeService.turnProbeRight(id);
   }
+
+  @PostMapping("/{id}/move-forward")
+  public Probe moveProbeForward(@PathVariable("id") int id) throws Exception  {
+    return probeService.moveProbeForward(id);
+  }
 }

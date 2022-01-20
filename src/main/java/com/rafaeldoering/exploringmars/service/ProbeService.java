@@ -105,4 +105,18 @@ public class ProbeService {
 
     return probe;
   }
+
+  public Probe moveProbeForward(int probeId) throws Exception {
+    Optional<Probe> searchProbe = probeRepository.findById(probeId);
+
+    if (searchProbe.isEmpty()) {
+      throw new ProbeNotFoundException();
+    }
+
+    Probe probe = searchProbe.get();
+    probe.moveForward();
+    probeRepository.save(probe);
+
+    return probe;
+  }
 }
