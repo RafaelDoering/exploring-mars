@@ -1,4 +1,4 @@
-package com.rafaeldoering.exploringmars.infrastructure.database.repopsitory;
+package com.rafaeldoering.exploringmars.infrastructure.database.repository;
 
 import com.rafaeldoering.exploringmars.infrastructure.database.model.MeshData;
 

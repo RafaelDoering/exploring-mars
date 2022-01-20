@@ -1,7 +1,7 @@
 package com.rafaeldoering.exploringmars.infrastructure.database.pesistence;
 
 import com.rafaeldoering.exploringmars.infrastructure.database.model.MeshData;
-import com.rafaeldoering.exploringmars.infrastructure.database.repopsitory.MeshRepository;
+import com.rafaeldoering.exploringmars.infrastructure.database.repository.MeshRepository;
 
 public class MeshPersistance {
   private final MeshRepository meshRepository;

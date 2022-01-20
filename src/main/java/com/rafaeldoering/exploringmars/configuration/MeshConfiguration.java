@@ -5,7 +5,7 @@ import com.rafaeldoering.exploringmars.domain.factory.MeshFactory;
 import com.rafaeldoering.exploringmars.domain.usecase.CreateMeshUseCase;
 import com.rafaeldoering.exploringmars.infrastructure.converter.MeshRestConverter;
 import com.rafaeldoering.exploringmars.infrastructure.database.pesistence.MeshPersistance;
-import com.rafaeldoering.exploringmars.infrastructure.database.repopsitory.MeshRepository;
+import com.rafaeldoering.exploringmars.infrastructure.database.repository.MeshRepository;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
