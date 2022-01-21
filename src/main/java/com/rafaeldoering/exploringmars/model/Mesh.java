@@ -67,11 +67,11 @@ public class Mesh extends BaseEntity {
     return false;
   }
 
-  public void addEntity(Probe probe) {
+  public void addProbe(Probe probe) {
     this.probes.add(probe);
   }
 
-  public void removeEntity(Probe probe) {
+  public void removeProbe(Probe probe) {
     this.probes.remove(probe);
   }
 }

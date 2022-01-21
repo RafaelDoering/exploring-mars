@@ -48,9 +48,9 @@ public class Probe extends BaseEntity {
   ) throws Exception {
     if (mesh.isCoordinateEmpty(coordinate)) {
       if (this.mesh != null) {
-        this.mesh.removeEntity(this);
+        this.mesh.removeProbe(this);
       }
-      mesh.addEntity(this);
+      mesh.addProbe(this);
       this.mesh = mesh;
       this.positionX = coordinate.getX();
       this.positionY = coordinate.getY();
