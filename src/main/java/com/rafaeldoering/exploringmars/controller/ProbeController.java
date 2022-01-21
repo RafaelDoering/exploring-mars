@@ -4,18 +4,24 @@ import javax.validation.Valid;
 
 import com.rafaeldoering.exploringmars.dto.ProbeDeployDto;
 import com.rafaeldoering.exploringmars.dto.ProbeDto;
+import com.rafaeldoering.exploringmars.exception.InvalidLocationException;
+import com.rafaeldoering.exploringmars.exception.MeshNotFoundException;
+import com.rafaeldoering.exploringmars.exception.ProbeNotFoundException;
 import com.rafaeldoering.exploringmars.model.Probe;
 import com.rafaeldoering.exploringmars.service.ProbeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -69,4 +75,25 @@ public class ProbeController {
   public Probe moveProbeForward(@PathVariable("id") int id) throws Exception  {
     return probeService.moveProbeForward(id);
   }
+
+  @ResponseStatus(
+    value=HttpStatus.NOT_FOUND,
+    reason="Probe not found"
+  )
+  @ExceptionHandler(ProbeNotFoundException.class)
+  public void probeNotFound() { }
+
+  @ResponseStatus(
+    value=HttpStatus.BAD_REQUEST,
+    reason="Invalid location"
+  )
+  @ExceptionHandler(InvalidLocationException.class)
+  public void invalidLocation() { }
+
+  @ResponseStatus(
+    value=HttpStatus.NOT_FOUND,
+    reason="Mesh not found"
+  )
+  @ExceptionHandler(MeshNotFoundException.class)
+  public void meshNotFound() { }
 }
