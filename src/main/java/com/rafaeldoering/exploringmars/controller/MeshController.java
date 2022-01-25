@@ -29,23 +29,41 @@ public class MeshController {
   private MeshService meshService;
 
   @PostMapping()
-  public Mesh postMesh(@Valid @RequestBody MeshDto mesh) throws Exception {
-    return meshService.createMesh(MeshDto.toMesh(mesh));
+  public ResponseEntity<Mesh> postMesh(
+    @Valid @RequestBody MeshDto mesh
+  ) throws Exception {
+    return new ResponseEntity<>(
+      meshService.createMesh(MeshDto.toMesh(mesh)),
+      HttpStatus.CREATED
+    );
   }
   
   @GetMapping()
-  public Page<Mesh> getMeshs(Pageable pageable) {
-    return meshService.getMeshs(pageable);
+  public ResponseEntity<Page<Mesh>> getMeshs(Pageable pageable) {
+    return new ResponseEntity<>(
+      meshService.getMeshs(pageable),
+      HttpStatus.OK
+    );
   }
 
   @GetMapping("/{id}")
-  public Mesh getMesh(@PathVariable("id") int id) throws Exception {
-    return meshService.getMesh(id);
+  public ResponseEntity<Mesh> getMesh(
+    @PathVariable("id") int id
+  ) throws Exception {
+    return new ResponseEntity<>(
+      meshService.getMesh(id),
+      HttpStatus.OK
+    );
   }
 
   @DeleteMapping("/{id}")
-  public Mesh deleteMesh(@PathVariable("id") int id) throws Exception {
-    return meshService.deleteMesh(id);
+  public ResponseEntity<Mesh> deleteMesh(
+    @PathVariable("id") int id
+  ) throws Exception {
+    return new ResponseEntity<>(
+      meshService.deleteMesh(id),
+      HttpStatus.OK
+    );
   }
 
   @ExceptionHandler(MeshNotFoundException.class)

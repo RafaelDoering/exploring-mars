@@ -32,49 +32,88 @@ public class ProbeController {
   private ProbeService probeService;
 
   @PostMapping()
-  public Probe postProbe(@Valid @RequestBody ProbeDto probe) {
-    return probeService.createProbe(probe.getName());
+  public ResponseEntity<Probe> postProbe(
+    @Valid @RequestBody ProbeDto probe
+  ) {
+    return new ResponseEntity<>(
+      probeService.createProbe(probe.getName()),
+      HttpStatus.CREATED
+    );
   }
 
   @GetMapping()
-  public Page<Probe> getProbes(Pageable pageable) {
-    return probeService.getProbes(pageable);
+  public ResponseEntity<Page<Probe>> getProbes(Pageable pageable) {
+    return new ResponseEntity<>(
+      probeService.getProbes(pageable),
+      HttpStatus.OK
+    );
   }
 
   @GetMapping("/{id}")
-  public Probe getProbe(@PathVariable("id") int id) throws Exception {
-    return probeService.getProbe(id);
+  public ResponseEntity<Probe> getProbe(
+    @PathVariable("id") int id
+  ) throws Exception {
+    return new ResponseEntity<>(
+      probeService.getProbe(id),
+      HttpStatus.OK
+    );
   }
 
   @DeleteMapping("/{id}")
-  public Probe deleteProbe(@PathVariable("id") int id) throws Exception {
-    return probeService.deleteProbe(id);
+  public ResponseEntity<Probe> deleteProbe(
+    @PathVariable("id") int id
+  ) throws Exception {
+    return new ResponseEntity<>(
+      probeService.deleteProbe(id),
+      HttpStatus.OK
+    );
   }
 
   @PostMapping("/{id}/deploy")
-  public Probe deployProbe(@PathVariable("id") int id, @Valid @RequestBody ProbeDeployDto probeDeploy) throws Exception  {
-    return probeService.deployProbe(
-      id,
-      probeDeploy.getMeshId(),
-      probeDeploy.getPositionX(),
-      probeDeploy.getPositionY(),
-      probeDeploy.getDirection()
+  public ResponseEntity<Probe> deployProbe(
+    @PathVariable("id") int id,
+    @Valid @RequestBody ProbeDeployDto probeDeploy
+  ) throws Exception  {
+    return new ResponseEntity<>(
+        probeService.deployProbe(
+        id,
+        probeDeploy.getMeshId(),
+        probeDeploy.getPositionX(),
+        probeDeploy.getPositionY(),
+        probeDeploy.getDirection()
+      ),
+      HttpStatus.OK
     );
   }
 
   @PostMapping("/{id}/turn-left")
-  public Probe turnProbeLeft(@PathVariable("id") int id) throws Exception  {
-    return probeService.turnProbeLeft(id);
+  public ResponseEntity<Probe> turnProbeLeft(
+    @PathVariable("id") int id
+  ) throws Exception  {
+    return new ResponseEntity<>(
+      probeService.turnProbeLeft(id),
+      HttpStatus.OK
+    );
   }
 
   @PostMapping("/{id}/turn-right")
-  public Probe turnProbeRight(@PathVariable("id") int id) throws Exception  {
-    return probeService.turnProbeRight(id);
+  public ResponseEntity<Probe> turnProbeRight(
+    @PathVariable("id") int id
+  ) throws Exception  {
+    return new ResponseEntity<>(
+      probeService.turnProbeRight(id),
+      HttpStatus.OK
+    );
   }
 
   @PostMapping("/{id}/move-forward")
-  public Probe moveProbeForward(@PathVariable("id") int id) throws Exception  {
-    return probeService.moveProbeForward(id);
+  public ResponseEntity<Probe> moveProbeForward(
+    @PathVariable("id") int id
+  ) throws Exception  {
+    return new ResponseEntity<>(
+      probeService.moveProbeForward(id),
+      HttpStatus.OK
+    );
   }
 
   @ExceptionHandler(ProbeNotFoundException.class)
