@@ -74,6 +74,18 @@ public class ProbeTest {
   }
 
   @Test
+  public void givenInvalidMoveWhenMoveOnMeshThenThrownError() throws Exception {    
+    try {
+      Probe probe = new Probe(PROBE_NAME);
+      Coordinate coordinate1 = new Coordinate(0, 0);
+      probe.deploy(this.mesh, coordinate1, CardinalDirection.WEST);
+      probe.moveForward();
+    } catch (Exception error){
+      assertSame("Invalid location", error.getMessage());
+    }
+  }
+
+  @Test
   public void givenOutOfBoundsMoveWhenMoveOnMeshThenThrownError() throws Exception {    
     try {
       Probe probe = new Probe(PROBE_NAME);

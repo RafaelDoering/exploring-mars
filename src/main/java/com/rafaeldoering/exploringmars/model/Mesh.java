@@ -59,7 +59,9 @@ public class Mesh extends BaseEntity {
   public boolean isOutOfBounds(Coordinate coordinate) {
     if (
       coordinate.getX() > this.getEdgeX() ||
-      coordinate.getY() > this.getEdgeY()
+      coordinate.getY() > this.getEdgeY() ||
+      coordinate.getX() < 0 ||
+      coordinate.getY() < 0
     ) {
       return true;
     }
@@ -67,11 +69,11 @@ public class Mesh extends BaseEntity {
     return false;
   }
 
-  public void addEntity(Probe probe) {
+  public void addProbe(Probe probe) {
     this.probes.add(probe);
   }
 
-  public void removeEntity(Probe probe) {
+  public void removeProbe(Probe probe) {
     this.probes.remove(probe);
   }
 }

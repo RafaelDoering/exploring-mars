@@ -4,6 +4,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.rafaeldoering.exploringmars.model.CardinalDirection;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,4 +26,16 @@ public class ProbeDeployDto {
   @NotNull(message = "'direction' is required")
   @Pattern(regexp = "[NESW]", message = "'direction' must be 'N', 'E', 'S' or 'W'")
   private String direction;
+
+  public CardinalDirection getDirection() {
+    if (this.direction == "N") {
+      return CardinalDirection.NORTH;
+    } else if (this.direction == "E") {
+      return CardinalDirection.EAST;
+    } else if (this.direction == "S") {
+      return CardinalDirection.SOUTH;
+    } else {
+      return CardinalDirection.WEST;
+    } 
+  }
 }
